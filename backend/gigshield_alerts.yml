@@ -1,0 +1,43 @@
+# gigshield_alerts.yml — GigShield Prometheus alerting rules
+groups:
+  - name: gigshield_critical
+    rules:
+      - alert: PayoutFailureRateHigh
+        expr: rate(http_requests_total{path="/api/v1/payouts", status=~"5.."}[5m]) > 0.01
+        for: 2m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Payout failure rate > 1%"
+
+      - alert: OracleCycleSlow
+        expr: oracle_cycle_duration_seconds > 1200
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Oracle cycle taking > 20 minutes"
+
+      - alert: MLModelAUCDegraded
+        expr: gigshield_ml_auc_roc < 0.70
+        for: 0m
+        labels:
+          severity: warning
+        annotations:
+          summary: "ML model AUC-ROC below 0.70 threshold"
+
+      - alert: LiquidityLow
+        expr: gigshield_liquidity_ratio < 1.5
+        for: 5m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Liquidity ratio below 1.5x threshold"
+
+      - alert: FraudScoreSpiking
+        expr: avg(gigshield_claim_fraud_score) > 0.60
+        for: 10m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Average claim fraud score above 0.60"

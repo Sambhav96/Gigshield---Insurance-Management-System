@@ -1,0 +1,31 @@
+# prometheus.yml — GigShield Prometheus scrape config
+# UNICORN FEATURE: Production monitoring via Prometheus + Grafana
+#
+# Setup:
+#   docker run -p 9090:9090 -v $(pwd)/prometheus.yml:/etc/prometheus/prometheus.yml prom/prometheus
+#   docker run -p 3001:3000 grafana/grafana
+#   Import dashboard ID 14282 (FastAPI) + custom GigShield dashboard below
+
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+
+alerting:
+  alertmanagers:
+    - static_configs:
+        - targets: []
+
+rule_files:
+  - "gigshield_alerts.yml"
+
+scrape_configs:
+  - job_name: "gigshield_api"
+    static_configs:
+      - targets: ["localhost:8000"]
+    metrics_path: "/metrics"
+    scrape_interval: 15s
+
+  - job_name: "gigshield_celery"
+    static_configs:
+      - targets: ["localhost:8001"]   # Celery Flower metrics endpoint
+    scrape_interval: 30s

@@ -1,0 +1,58 @@
+@import "tailwindcss";
+
+@theme {
+  /* Global Typography Primitives */
+  --font-syne: 'Syne', sans-serif;
+  --font-space-grotesk: 'Space Grotesk', sans-serif;
+  --font-manrope: 'Manrope', sans-serif;
+  --font-dm-sans: 'DM Sans', sans-serif;
+  --font-inter: 'Inter', sans-serif;
+  --font-jetbrains: 'JetBrains Mono', monospace;
+
+  /* Rider Portal (Mobile-First Consumer) */
+  --color-rider-bg: #0a0e14;
+  --color-rider-primary: #54c7fc;
+  --color-rider-secondary: #9df197;
+  --color-rider-white: #f1f3fc;
+  --color-rider-error: #ff716c;
+
+  /* Hub Portal (Precision Sentinel) */
+  --color-hub-bg: #060d08;
+  --color-hub-surface: #11131c;
+  --color-hub-surface-low: #191b24;
+  --color-hub-surface-high: #272a33;
+  --color-hub-primary: #38bdf8;
+  --color-hub-secondary: #4ade80;
+  --color-hub-error: #ffb4ab;
+  --color-hub-text: #e1e1ee;
+
+  /* Admin Terminal Portal (The Core) */
+  --color-admin-bg: #060e20;
+  --color-admin-surface: #0b1326;
+  --color-admin-surface-high: #171f33;
+  --color-admin-primary: #c3c0ff;
+  --color-admin-tertiary: #4cd7f6;
+  --color-admin-error: #ffb4ab;
+  --color-admin-outline: #45474c;
+  --color-admin-text: #dae2fd;
+}
+
+body {
+  background-color: #000;
+  color: #fff;
+  /* Font defaults overridden by portal layouts */
+}
+
+/* Glasscard helper pattern exclusively for Rider */
+.rider-glass-card {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* No-Line rule backgrounds exclusively for Hub */
+.hub-grain {
+  opacity: 0.03;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
