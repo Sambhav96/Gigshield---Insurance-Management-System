@@ -102,7 +102,6 @@ class Settings(BaseSettings):
             "rzp_test_placeholder",
             "https://placeholder.supabase.co",
             "UPSTASH_PASSWORD",
-            "",
         }
 
         def _is_placeholder(val: str) -> bool:
@@ -114,8 +113,6 @@ class Settings(BaseSettings):
             "JWT_SECRET_KEY": self.jwt_secret_key,
             "DATABASE_URL": self.database_url,
             "REDIS_URL": self.redis_url,
-            "RAZORPAY_KEY_ID": self.razorpay_key_id,
-            "RAZORPAY_KEY_SECRET": self.razorpay_key_secret,
             "SUPABASE_URL": self.supabase_url,
             "SUPABASE_SERVICE_ROLE_KEY": self.supabase_service_role_key,
         }
