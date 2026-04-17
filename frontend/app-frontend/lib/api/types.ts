@@ -54,9 +54,12 @@ export interface PolicyQuote {
 
 export interface AuthTokenResponse {
   access_token: string;
+  token_type?: string;
   rider_id?: string;
+  user_id?: string;
   admin_id?: string;
   hub_manager_id?: string;
+  hub_id?: string;
   is_new_rider?: boolean;
 }
 
